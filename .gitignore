@@ -1,0 +1,33 @@
+# Python-related
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+
+# Environment variables
+.env
+
+# Virtual environments
+.venv/
+venv/
+
+# Node.js dependencies
+node_modules/
+
+# Static files
+staticfiles/
+mediafiles/
+
+# Tailwind build artifacts
+*.css.map
+
+# IDE files
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Git-related
+.git/
