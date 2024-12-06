@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-e_-e*0k5-b6$q(&g(7ln@o)6fqr7(clyzj@9=i2c6oz622(oxz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
 ALLOWED_HOSTS = []
 
 
@@ -49,6 +51,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['livereload']
+    MIDDLEWARE += ['livereload.middleware.LiveReloadScript']
 
 ROOT_URLCONF = 'ecommercesite.urls'
 
