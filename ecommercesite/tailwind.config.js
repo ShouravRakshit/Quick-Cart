@@ -5,7 +5,13 @@ module.exports = {
     './static/src/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'amazon-orange': '#FF9900',
+        'amazon-black': '#000000',
+        'amazon-squid-ink': '#232F3E',
+      },
+    },
   },
   plugins: [],
 }
