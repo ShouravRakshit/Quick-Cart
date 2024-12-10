@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from products.models import Product
 from .models import Cart, CartItem
 from django.views.decorators.http import require_POST
@@ -38,8 +38,24 @@ def cart_add(request, product_id):
 def cart_detail(request):
     cart_id = request.session.get('cart_id')
     cart = None
+    cart_items = []
 
     if cart_id:
-        cart = Cart.objects.get(id=cart_id)
+        try:
+            cart = Cart.objects.get(id=cart_id)
+            cart_items = cart.items.all()  # fetching all items in the cart
+        except Cart.DoesNotExist:
+            cart = None
 
-    return render(request, 'cart/cart_detail.html', {'cart': cart})
+    # passing the cart and cart_items to the template
+    return render(request, 'cart/cart_detail.html', {'cart': cart, 'cart_items': cart_items})
+
+
+
+def cart_remove(request, cart_item_id):
+    cart_id = request.session.get('cart_id')
+    cart = get_object_or_404(Cart, id=cart_id)
+    item = get_object_or_404(CartItem, id=cart_item_id, cart=cart)
+
+    item.delete()
+    return redirect('cart:cart_detail')
