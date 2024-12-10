@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+
+{% block content %}
+
+<h2 class="text-2xl font-semibold mb-4"> My Cart </h2>
+
+{% if cart %}
+<ul class="space-y-5">
+    {% for item in cart.items.all %}
+    <li class="flex items-center p-4">
+        {% if item.product.image %}
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-36">
+        {% else %}
+        <p> No image available </p>
+        {% endif %}
+        <div class="flex-grow">
+            <h3 class="font-semibold text-lg"> {{ item.product.name }} </h3>
+            <p> {{ item.product.description }} </p>
+            <p class="text-teal-700"> Price: ${{ item.product.price }} </p>
+            <p> Quantity: {{ item.quantity }} </p>
+        
+        <div class="flex-shrink">
+            <form action="" method="post">
+            {% csrf_token %}
+            <button class="bg-red-600 text-white px-2 py-1 text-xs rounded" type="submit"> X </button>
+            </form>
+        </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 # Create your views here.
 
 @require_POST
-def cart(request, product_id):
+def cart_add(request, product_id):
     cart_id = request.session.get('cart_id')
 
     if cart_id:
@@ -20,13 +20,16 @@ def cart(request, product_id):
         request.session['cart_id'] = cart.id
 
     product = get_object_or_404(Product, id=product_id)
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    if not created:
-        cart_item.quantity += 1
-    cart_item.save()
+    try:
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if not created:
+            cart_item.quantity += 1
+        cart_item.save()
+    except Exception as e:
+        return JsonResponse({"success": False, "message": str(e)}, status=500)
 
     response_data = {  
-        "success": True,
+        "status": 'success',
         "message": f"Added {product.name} to cart",
     }
 
