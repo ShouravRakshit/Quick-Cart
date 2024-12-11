@@ -4,7 +4,7 @@ from django.db import models
 
 from django.urls import reverse
 
-from ecommercesite.products.models import Product
+from products.models import Product
 
 class Order(models.Model):
     first_name = models.CharField(max_length=150)
