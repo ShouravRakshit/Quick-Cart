@@ -10,7 +10,7 @@
     {% for item in cart_items %}
     <li class="flex items-center p-4">
         {% if item.product.image %}
-        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-36 mr-5">
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-36 mr-5 shadow-md mb-2 shadow-slate-500">
         {% else %}
         <p> No image available </p>
         {% endif %}
@@ -25,13 +25,14 @@
         <div class="flex-shrink">
             <form action="{% url 'cart:cart_remove' item.id %}" method="post">
             {% csrf_token %}
-            <button class="bg-red-600 text-white px-2 py-1 text-xs rounded" type="submit"> X </button>
+            <button class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 mt-1 text-xs rounded" type="submit"> Remove </button>
             </form>
         </div>
         </div>
     </li>
     {% endfor %}
 </ul>
+<p class="ml-4"> <strong> Total: ${{ cart.get_total_price }} </strong> </p>
 {% else %}
 <p class="text-center text-gray-500 mt-5"> Your cart is empty </p>
 {% endif %}

@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render, render
 
 from .models import Category, Product
 
+
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
