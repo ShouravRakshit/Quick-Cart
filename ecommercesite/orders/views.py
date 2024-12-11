@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from cart.models import Cart
 from orders.forms import OrderCreateForm
-from orders.models import OrderItem
+from orders.models import OrderItem, Order
 
 # Create your views here.
 
@@ -32,3 +32,7 @@ def order_create(request):
     else:
         form = OrderCreateForm()
     return render(request, 'orders/order/order_create.html', {'cart': cart, 'form': form})
+
+def order_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'orders/order/order_confirmation.html', {'order': order})
