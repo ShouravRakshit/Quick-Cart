@@ -25,7 +25,7 @@
         <div class="flex-shrink">
             <form action="{% url 'cart:cart_remove' item.id %}" method="post">
             {% csrf_token %}
-            <button class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 mt-1 text-xs rounded" type="submit"> Remove </button>
+            <button class="bg-red-600 hover:bg-red-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded" type="submit"> Remove </button>
             </form>
         </div>
         </div>
@@ -36,6 +36,12 @@
 {% else %}
 <p class="text-center text-gray-500 mt-5"> Your cart is empty </p>
 {% endif %}
+
+<form>
+    <button class="bg-green-700 hover:bg-green-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded"> 
+        Proceed to Checkout
+    </button>
+</form>
 
 
 {% endblock %}

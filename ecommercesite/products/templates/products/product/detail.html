@@ -24,7 +24,7 @@
 
             <form action="{% url 'cart:cart_add' product.id %}" method="post" id="add-to-cart-form" class="flex items-center gap-4">
                 {% csrf_token %}
-                <button type="submit" class="px-2 py-1 rounded bg-blue-500 hover:bg-blue-600 text-white text-base font-bold">Add to Cart</button>
+                <button type="submit" class="px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white text-base font-bold transition-colors duration-500">Add to Cart</button>
                 <p id="message" class="text-sm font-medium text-green-600"></p>
             </form>
         </div>
