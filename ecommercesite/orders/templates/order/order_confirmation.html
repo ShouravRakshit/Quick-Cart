@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Order Confirmation {% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+    <h2 class="text-2xl font-semibold mb-1 mt-0"> Order Confirmation </h2>
+
+    <p> Thank you for your order! </p>
+
+<ul>
+    {% for item in order.items.all %}
+    <li>
+        <strong>{{ item.quantity }} x {{ item.product.name }}</strong>
+        <br>
+        <span>${{ item.price }}</span>
+    </li>
+    {% endfor %}
+</ul>
+<p>
+    Total: <span class="text-teal-600"> ${{ order.get_total_cost }} </span>
+</p>
+</div>
+
+
+{% endblock %}

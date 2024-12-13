@@ -33,15 +33,22 @@
     {% endfor %}
 </ul>
 <p class="ml-4"> <strong> Total: ${{ cart.get_total_price }} </strong> </p>
+<div class="text-center">
+    <form method="post" action="{% url 'orders:order_create' %}">
+        {% csrf_token %}
+        <button type="submit" class="bg-green-700 hover:bg-green-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded"> 
+            Proceed to Checkout
+        </button>
+    </form>
+</div>
 {% else %}
-<p class="text-center text-gray-500 mt-5"> Your cart is empty </p>
+<p class="text-center text-white mt-5"> Your cart is empty  </p>
+<div class="text-center mt-5">
+    <a href="{% url 'products:product_list' %}" class="bg-blue-600 hover:bg-blue-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded">
+        Continue Shopping
+    </a>
+</div>
 {% endif %}
-
-<form>
-    <button class="bg-green-700 hover:bg-green-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded"> 
-        Proceed to Checkout
-    </button>
-</form>
 
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, render
+from django.db.models import Q
 
 # Create your views here.
 
@@ -19,3 +20,11 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     return render(request, 'products/product/detail.html', {'product': product})
+
+def product_search(request):
+    query = request.GET.get('q', '')
+    results = Product.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query),
+        available=True
+    ) if query else None
+    return render(request, 'products/product/product_search.html', {'query': query, 'results': results})
