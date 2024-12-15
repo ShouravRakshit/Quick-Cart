@@ -1,33 +1,94 @@
-<nav class="container mx-auto p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
-    <!-- Home Link -->
-    <div class="flex flex-col items-center sm:items-start">
-        <a href="/" class="text-blue-500 text-1xl font-bold mb-2 sm:mb-0">Home</a>
-    </div>
+<nav
+  class="container mx-auto p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0"
+>
+  <!-- Home Link -->
+  <div class="flex flex-col items-center sm:items-start">
+    <a href="/" class="text-blue-500 text-1xl font-bold mb-2 sm:mb-0">Home</a>
+  </div>
 
-    <!-- Search Form -->
-    <form method="get" action="{% url 'products:product_search' %}" class="flex flex-col sm:flex-row items-center">
-        <input
-            type="text"
-            name="q"
-            placeholder="Search products..."
-            class="border px-2 py-1 rounded-l sm:rounded"
-        />
-        <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded sm:ml-2 mt-2 sm:mt-0">
-            Search
-        </button>
-    </form>
+  <!-- Search Form -->
+  <form
+    method="get"
+    action="{% url 'products:product_search' %}"
+    class="flex flex-col sm:flex-row items-center"
+  >
+    <input
+      type="text"
+      name="q"
+      placeholder="Search products..."
+      class="border px-2 py-1 rounded-l sm:rounded"
+    />
+    <button
+      type="submit"
+      class="bg-blue-500 text-white px-3 py-1 rounded sm:ml-2 mt-2 sm:mt-0"
+    >
+      Search
+    </button>
+  </form>
 
-    <!-- Cart Icon -->
-    <a href="{% url 'cart:cart_detail' %}" class="fill-blue-500">
-        <svg version="1.1" class="w-6 mx-auto sm:mx-0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="40px" height="36px" viewBox="0 0 40 36" style="enable-background:new 0 0 40 36;" xml:space="preserve">
-            <g id="Page-1_4_" sketch:type="MSPage">
-                <g id="Desktop_4_" transform="translate(-84.000000, -410.000000)" sketch:type="MSArtboardGroup">
-                    <path id="Cart" sketch:type="MSShapeGroup" class="st0" d="M94.5,434.6h24.8l4.7-15.7H92.2l-1.3-8.9H84v4.8h3.1l3.7,27.8h0.1
+  <!-- Cart Icon -->
+  <a href="{% url 'cart:cart_detail' %}" class="fill-blue-500">
+    <svg
+      version="1.1"
+      class="w-6 mx-auto sm:mx-0"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="40px"
+      height="36px"
+      viewBox="0 0 40 36"
+      style="enable-background: new 0 0 40 36"
+      xml:space="preserve"
+    >
+      <g id="Page-1_4_" sketch:type="MSPage">
+        <g
+          id="Desktop_4_"
+          transform="translate(-84.000000, -410.000000)"
+          sketch:type="MSArtboardGroup"
+        >
+          <path
+            id="Cart"
+            sketch:type="MSShapeGroup"
+            class="st0"
+            d="M94.5,434.6h24.8l4.7-15.7H92.2l-1.3-8.9H84v4.8h3.1l3.7,27.8h0.1
                         c0,1.9,1.8,3.4,3.9,3.4c2.2,0,3.9-1.5,3.9-3.4h12.8c0,1.9,1.8,3.4,3.9,3.4c2.2,0,3.9-1.5,3.9-3.4h1.7v-3.9l-25.8-0.1L94.5,434.6"
-                    />
-                </g>
-            </g>
-        </svg>
-    </a>
+          />
+        </g>
+      </g>
+    </svg>
+  </a>
+ 
 </nav>
+
+<script>
+	const themeToggle = document.getElementById('theme-toggle');
+const lightIcon = document.getElementById('light-icon');
+const darkIcon = document.getElementById('dark-icon');
+
+const isDarkMode = localStorage.getItem('theme') === 'dark';
+
+// the initial color theme
+if (isDarkMode) {
+    document.documentElement.classList.add('dark');
+    lightIcon.classList.remove('hidden');
+    darkIcon.classList.add('hidden');
+}
+
+themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    // Toggle icons
+    if (isDark) {
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+    } else {
+        darkIcon.classList.remove('hidden');
+        lightIcon.classList.add('hidden');
+    }
+});
+
+</script>

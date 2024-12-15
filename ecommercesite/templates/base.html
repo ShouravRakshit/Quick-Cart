@@ -8,19 +8,23 @@
 
     <link href="{% static 'dist/styles.css' %}" rel="stylesheet"/>
 </head>
-<body class="bg-gradient-to-r from-amazon-orange to-amazon-squid-ink flex flex-col min-h-screen">
-    <header class="shadow-md">    
-         {% include "includes/nav.html" %}
+<body class="flex flex-col min-h-screen bg-gradient-to-r from-gray-900 to-black text-white relative">
+    <!-- Background Grid -->
+    <div class="absolute inset-0 grid-overlay pointer-events-none"></div>
+  
+    <!-- Content -->
+    <header class="shadow-md relative z-10">    
+      {% include "includes/nav.html" %}
     </header>
-
-    <main class="container mx-auto py-8 flex-grow"> 
-        {% block content %}{% endblock %}
+  
+    <main class="container mx-auto py-8 flex-grow relative z-10"> 
+      {% block content %}{% endblock %}
     </main>
-
-     <footer>
-        <div class="container mx-auto p-1 text-center">
-            <p>&copy; 2025 My Amazon</p>
-        </div>
+  
+    <footer class="relative z-10">
+      <div class="container mx-auto p-1 text-center">
+        <p>&copy; QuickCart</p>
+      </div>
     </footer> 
-</body>
+  </body>  
 </html>
