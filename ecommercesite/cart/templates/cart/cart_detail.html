@@ -19,7 +19,7 @@
             <h3 class="font-semibold text-lg"> {{ item.product.name }} </h3>
             </a>
             <p> {{ item.product.description }} </p>
-            <p class="text-teal-700"> Price: ${{ item.product.price }} </p>
+            <p class="text-white"> Price: ${{ item.product.price }} </p>
             <p> Quantity: {{ item.quantity }} </p>
         
         <div class="flex-shrink">
@@ -36,7 +36,8 @@
 <div class="text-center">
     <form method="post" action="{% url 'orders:order_create' %}">
         {% csrf_token %}
-        <button type="submit" class="bg-green-700 hover:bg-green-500 transition-colors duration-500 text-white font-medium px-4 py-2 mt-1 text-xs rounded"> 
+        <button type="submit" class="px-4 py-2 border-1 border-gray-700 rounded text-white bg-black
+        hover:bg-gray-800 transition duration-300 shadow-md hover:shadow-lg"> 
             Proceed to Checkout
         </button>
     </form>

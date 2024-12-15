@@ -22,9 +22,9 @@ def product_detail(request, id, slug):
     return render(request, 'products/product/detail.html', {'product': product})
 
 def product_search(request):
-    query = request.GET.get('q', '')
+    query = request.GET.get('q', '').strip()
     results = Product.objects.filter(
-        Q(name__icontains=query) | Q(description__icontains=query),
+        Q(name__icontains=query) | Q(description__icontains=query), 
         available=True
-    ) if query else None
+    ) if query else []
     return render(request, 'products/product/product_search.html', {'query': query, 'results': results})

@@ -22,18 +22,18 @@
         {% else %}
         <h2 class="font-bold mb-4"> All Products </h2>
         {% endif %}
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {% for product in products %}
                <a href="{% url 'products:product_detail' product.id product.slug %}">
                 <div>
                     {% if product.image %}
-                    <img src="{{product.image.url}}" alt= {{product.name}} class="h-24 w-24 object-cover">
+                    <img src="{{product.image.url}}" alt= {{product.name}} class="h-28 w-24 object-cover">
                     {% else %}
                     <p> No image available </p>
                     {% endif %}
                     <h5 class="font-semibold"> {{product.name}} </h5>
                     <p> {{product.description}} </p>
-                    <p class="text-amazon-black"> Price: ${{product.price}} </p>
+                    <p class="text-amazon-black mb-5"> Price: ${{product.price}} </p>
                 </div>
                  </a>
             {% endfor %}
