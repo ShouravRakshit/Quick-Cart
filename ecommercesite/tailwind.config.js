@@ -7,8 +7,11 @@ module.exports = {
 
   ],
   theme: {
-    
+    extend: {},
   },
+  variants: {
+    fill: ['hover', 'focus'],
+},
   plugins: [],
 }
 
