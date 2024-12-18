@@ -23,20 +23,24 @@ def product_detail(request, id, slug):
     return render(request, 'products/product/detail.html', {'product': product})
 
 
+
 def product_search(request):
     query = request.GET.get('q', '').strip()
     results = []
 
     if query:
-        # Preprocess query: Split words and match boundaries
-        search_keywords = re.split(r'\s+', query)  # Split query into words
+        # Split query into words for flexible searching
+        search_keywords = re.split(r'[-\s]+', query)  # Split by spaces and hyphens
         filters = Q()
 
         for word in search_keywords:
-            # Match whole words or boundary words using iregex
-            regex = r'\b' + re.escape(word) + r'\b'
-            filters |= Q(name__iregex=regex) | Q(description__iregex=regex)
+            # Perform case-insensitive partial match (icontains)
+            filters |= Q(name__icontains=word) | Q(description__icontains=word)
 
+        # Search for exact query match as well
+        filters |= Q(name__icontains=query) | Q(description__icontains=query)
+
+        # Filter available products
         results = Product.objects.filter(filters, available=True).distinct()
 
     return render(request, 'products/product/product_search.html', {
