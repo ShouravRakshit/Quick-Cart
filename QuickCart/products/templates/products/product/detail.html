@@ -53,6 +53,9 @@
             const messageElement = document.getElementById('message');
             if (data.status === 'success') {
                 messageElement.textContent = 'Item added to cart';
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1);
             } else {
                 messageElement.textContent = 'Error adding item to cart';
             }
