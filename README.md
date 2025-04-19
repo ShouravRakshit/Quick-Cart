@@ -60,13 +60,11 @@ git clone https://github.com/ShouravRakshit/Django-EcommerceShop.git
 
 ```
 cd Django-EcommerceShop
-
 ```
 3. Create a virtual environment:
 
 ```
 python -m venv .venv
-
 ```
 4. Windows:
 
@@ -91,30 +89,25 @@ pip install -r requirements.txt
 
 ```
 cd ecommercesite
-
 ```
 
 8. Install Node.js Dependencies
 ```
 npm install
-
 ```
 9. Run Tailwind CSS Build
 ```
 npm run watch:css
-
 ```
 10. Load the dataset
 ```
 python manage.py loaddata data.json
-
 ```
 11. Run the Development Server
 ```
 python manage.py makemigrations
 python manage.py migrate # Apply database migrations
 python manage.py runserver
-
 ```
 
 
