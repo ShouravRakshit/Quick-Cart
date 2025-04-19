@@ -112,5 +112,5 @@ python manage.py runserver
 
 
 # **Contributors**
-- Shourav Rakshit Ivan, Email: shouravrakshit.ivan@ucalgary.ca 
+Shourav Rakshit Ivan, Email: shouravrakshit.ivan@ucalgary.ca 
 University of Calgary
